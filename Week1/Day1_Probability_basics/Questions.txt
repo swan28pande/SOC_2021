@@ -1,0 +1,15 @@
+#Probability & statistics basics
+
+1)Suppose ur giving an exam with 90 MCQs with 4 options each & +4,-1 marking scheme but unfortunately don't have access to the question paper.
+What is probability u will end worse off by attempting all problems i.e. score negative marks overall.
+
+Hints:
+i)Get the probability distribution function i.e. probability of getting all feasible marks 
+ii)Add all the probabilities of getting negative marks i.e. -90,-85,.....,-5 
+
+2)There are infinitely many parellel vertical lines on a plane, adjacent lines are seperated by 1 m. Now a stick of length 0.5 m is flipped uniformly at random.
+What is the probability the stick will fall on one these vertical lines.
+
+Hints:
+i)Try doing this by simulating the event many times and calculating the fraction of times the stick falls on one of the lines
+ii)Identify the parameters that must be chosen randomly while simulating the process
