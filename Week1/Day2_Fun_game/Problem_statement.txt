@@ -1,0 +1,9 @@
+# Day 2 Problem
+
+Fun_Game
+1) You have been handed a bag consisting of n = 20 items from which you can sample different items with respective utilities atmost 5 times
+2) After each time u sample from the bag u can either chose to keep the item and end the game or replace it and sample again till ur draws are exhausted
+3) Your score is the average utility of the items chosen across all rounds
+4) The files environment.py, game.py are helper programs simulating the environment & the scoring
+5) U need to implement ur agent which would make a decision on whether u stand by the item or replace and draw again 
+6) The input & return values of the function has been commented in your_agent.py
