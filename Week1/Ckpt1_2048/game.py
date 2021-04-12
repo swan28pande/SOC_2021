@@ -9,11 +9,14 @@ from board import board
 
 game_board = board()
 
+key_to_move = {'w':'U','a':'L','s':'D','d':'R'}
+
 while(True):
     print(game_board)
-    move = input()     #Or move = agent(game_board) for testing an agent
-    if(game_board.check_move()):
-        game_board.update()
+    key = input()     
+    move = key_to_move[key]
+    if(game_board.check_move(move)):
+        game_board.update(move)
     else:
         print("Invalid Move!!!\n")
         continue
@@ -22,8 +25,3 @@ while(True):
 
 print(game_board)
 print("Game Over !!!")
-
-    
-    
-
-
