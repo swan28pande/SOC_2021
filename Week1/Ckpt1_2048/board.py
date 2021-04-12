@@ -73,6 +73,7 @@ class board:
         #Check if there are any other valid moves availables or else return false i.e. gameOver
         return self.check_move('U') or self.check_move('D') or self.check_move('L') or self.check_move('R')
 
+    # Spawns 2s/4s on the gameboard after a move has been made
     def spawn(self):
         x = random.random()
         empty_pos = []
