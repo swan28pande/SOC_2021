@@ -5,7 +5,7 @@ move(move)
 check()
 valid move hai->continue or print final score
 """
-import board from board
+from board import board
 
 game_board = board()
 
