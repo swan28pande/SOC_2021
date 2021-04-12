@@ -186,7 +186,6 @@ class board:
                                     break
                                 else:
                                     break
-        self.spawn()
 
 
 
