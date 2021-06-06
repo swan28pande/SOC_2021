@@ -1,3 +1,6 @@
+#This is a heuristic algorithm to simulate the playing of the game by a USER
+#This program opposes the RL Agent and acts as a Real User Playing the game
+
 def marginalScore(state,positions,opponent_char):
     ctr_opponent = 0
     ctr_self = 0
@@ -36,6 +39,7 @@ def blockingScore(state,row_id,col_id,opponent_char):
 
     return Score
 
+#Function which figures out the best move possible
 def blockingMove(state,opponent_char):
     move = []
     totScore = 0.0
