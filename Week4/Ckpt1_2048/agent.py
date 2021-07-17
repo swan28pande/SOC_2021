@@ -3,11 +3,12 @@ import random
 import math
 import matplotlib.pyplot as plt
 from board import board
+from qtable import qtable
 import numpy as np
 import copy
 
 """
-Implementing an Expectimax Algorithm
+Implementing Deep Q-Learningu Algorithm
 """
 
 N = 4
@@ -15,9 +16,13 @@ n_epochs = 1000000
 
 class agent():
     def __init__(self):
-         pass
+        self.qtable= qtable()
+        self.eps = 0.2
+        self.scores = []
 
+        
 
+    
 
     def get_action(self,state):
 
@@ -25,7 +30,7 @@ class agent():
         if(sample<self.eps):
             return random.randint(0,3)
         else:
-            return np.argmax(self.qvalues[state])
+            return np.argmax(self.qtable.forstate(state))
 
     def generate_episode(self):
         """
@@ -47,20 +52,7 @@ class agent():
         return {"States":states,"Actions":actions,"Rewards":rewards},prev_score
 
 
-    def update_qvalues(self,episode):
-        """
-        update q-values using the episode
-        """
-        n = len(episode["Rewards"])
-        for i in range(n):
-            state1 = episode["States"][i]
-            state2 = episode["States"][i+1]
-            action = episode["Actions"][i]
-            reward = episode["Rewards"][i]
-            cumm_reward = reward
-            if(state2[0] != '-'):
-                cumm_reward += np.mean(self.qvalues[state2])
-            self.qvalues[state1][action] += self.lr*(cumm_reward-self.qvalues[state1][action])
+   
     
     def learning_curve(self):
         plt.plot(np.arange(n_epochs/1000),self.scores)
@@ -75,7 +67,7 @@ class agent():
             self.eps = 0.5/(1.0+math.sqrt(epoch/10000))
             episode,score = self.generate_episode()
             scores.append(score)
-            self.update_qvalues(episode)
+            self.qvalues.update(episode)
             if(epoch%1000==0):
                 self.scores.append(sum(scores)/1000.0)
                 print(epoch,':',score)
@@ -87,7 +79,7 @@ class agent():
         for i in range(n):
             game_board = board()
             while(game_board.check_state()):
-                action = np.argmax(self.qvalues[game_board.State])
+                action = np.argmax(self.qtable.forstate(game_board.State))
                 print(game_board.State,action)
                 game_board.update(action)
             print(i,':',game_board.score)
