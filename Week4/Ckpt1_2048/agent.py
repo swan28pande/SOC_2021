@@ -8,7 +8,7 @@ import numpy as np
 import copy
 
 """
-Implementing Deep Q-Learningu Algorithm
+Implementing Deep Q-Learning Algorithm
 """
 
 N = 4
@@ -27,6 +27,7 @@ class agent():
     def get_action(self,state):
 
         sample = random.random()
+        # Alternate between choosing an epsilon greedy policy and model predicted action
         if(sample<self.eps):
             return random.randint(0,3)
         else:
@@ -37,19 +38,17 @@ class agent():
         Generate an episode & corresponding rewards
         """
         game_board = board()
-        states = [game_board.State]
-        actions = []
-        rewards = []
-        prev_score = 0
+        transition_list= [] # Stores Transitions as (s,a,s',r)
+        current_score = 0
         while( game_board.check_state()):
-            action = self.get_action(game_board.State)
+            s = game_board.State
+            action = self.get_action(s)
             game_board.update(action)
-            states.append(game_board.State)
-            actions.append(action)
-            rewards.append(game_board.score-prev_score)
-            prev_score = game_board.score
-        
-        return {"States":states,"Actions":actions,"Rewards":rewards},prev_score
+            s_prime = game_board.State
+            rewards.append(game_board.score-current_score)
+            current_score = game_board.score
+            transition_list.append((s,action,s_prime,reward))
+        return transition_list, current_score
 
 
    
