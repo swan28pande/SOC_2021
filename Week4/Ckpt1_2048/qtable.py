@@ -40,17 +40,17 @@ class DQN(torch.nn.Module):
         X4 = self.conv2(X);  X4 = torch.nn.ReLU(X4)
         X4 = self.conv2_2(X4);  X4 = torch.nn.ReLU(X4)
 
-        # Flattening All the Outputs of the Convolution Layers and Feed it into the FCNN
-        X1 = torch.flatten(X1)
-        X2 = torch.flatten(X2)
-        X3 = torch.flatten(X3)
-        X4 = torch.flatten(X4)
+       # Flattening All the Outputs of the Convolution Layers and Feed it into the FCNN
+        X1 = X1.view(batch_size,-1)
+        X2 = X2.view(batch_size,-1)
+        X3 = X3.view(batch_size,-1)
+        X4 = X4.view(batch_size,-1)
 
-        X1 = torch.concat([X1,X2,X3,X4]) # Used X1 to save space
+        X1 = torch.concat([X1,X2,X3,X4], dim=1) # Used X1 to save space (batch_size, -1)
         X1 = self.nn1(X1)
         X1 = torch.nn.ReLU(X1)
         X1 = self.nn2(X1)
-        X1 = torch.nn.ReLU(X1)
+        X1 = torch.nn.ReLU(X1) # (batch_size, 4)
         
         return X1 # Neural Network Returns Q(s,a) for all the actions 'a'
 
