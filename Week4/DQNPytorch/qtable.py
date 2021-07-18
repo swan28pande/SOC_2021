@@ -11,7 +11,6 @@ class DQN(torch.nn.Module):
         super(DQN, self).__init__()
         self.setup_convolution_layers()
         self.setup_linear_layers()
-        self.epochs = 5
     
     def setup_convolution_layers(self):
         self.conv1 = torch.nn.Conv2d(16,128,(1,2))
@@ -63,6 +62,7 @@ class qtable:
         self.model.to(device)
         self.loss_criterion = torch.nn.SmoothL1Loss()
         self.opt = torch.optim.AdamW(self.model.parameters(), lr = 0.001)
+        self.epochs = 5
 
          # Converting the Board into its Feature Vector Representation - One Hot Encoded Tensor
     def preprocessing(state):
