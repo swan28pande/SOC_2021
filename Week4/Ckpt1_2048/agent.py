@@ -20,10 +20,6 @@ class agent():
         self.eps = 0.2
         self.scores = []
 
-        
-
-    
-
     def get_action(self,state):
 
         sample = random.random()
