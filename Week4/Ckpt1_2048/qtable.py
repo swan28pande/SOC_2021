@@ -79,6 +79,7 @@ class qtable:
         
         return state_feature_tensor
     
+    # Returns Q(s,a) for all actions 'a'
     def forstate(self,state):
         state = self.bitmap_representation(state).to(device)
         # Putting Model in evaluation Mode
@@ -90,6 +91,7 @@ class qtable:
         model.train()
         return action_value_functions
 
+    # Returns Q(s,a) given station 's' and action 'a'
     def values(self,state,action):
         action_dict = {0:'U', 1:'D', 2:'L', 3:'R'}
         Q_val = self.forstate(state)
